@@ -9,7 +9,7 @@ void t_init(alloc_strat_e strat) {
 	memset(&allocator, 0, sizeof(AllocatorState));
 	allocator.strategy = strat;
 	size_t size = 4096 + sizeof(MemoryBlock);
-	void* memory = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+	void* memory = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
 	if (memory == MAP_FAILED) {
 		perror("Memory allocation failed\n");
@@ -82,7 +82,7 @@ void* buddy_alloc(MemoryBlock* ptr, MemoryBlock* prev_ptr, size_t size_needed) {
 			hint = (char*)prev_ptr + prev_ptr->size;
 		}
 
-		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 		if (memory == MAP_FAILED) return NULL;
 
 		allocator.system_size += sizeUp;
@@ -139,7 +139,7 @@ void* first_fit(MemoryBlock* ptr, MemoryBlock* prev_ptr, size_t size_needed) {
 			hint = (char*)prev_ptr + prev_ptr->size + sizeof(MemoryBlock);
 		}
 
-		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 		if (memory == MAP_FAILED) return NULL;
 
 		allocator.system_size += sizeUp;
@@ -196,7 +196,7 @@ void* best_fit(MemoryBlock* ptr, MemoryBlock* prev_ptr, size_t size_needed) {
 			hint = (char*)prev_ptr + prev_ptr->size + sizeof(MemoryBlock);
 		}
 
-		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 		if (memory == MAP_FAILED) return NULL;
 
 		allocator.system_size += sizeUp;
@@ -251,7 +251,7 @@ void* worst_fit(MemoryBlock* ptr, MemoryBlock* prev_ptr, size_t size_needed) {
 			hint = (char*)prev_ptr + prev_ptr->size + sizeof(MemoryBlock);
 		}
 
-		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		void* memory = mmap(hint, sizeUp, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 		if (memory == MAP_FAILED) return NULL;
 
 		allocator.system_size += sizeUp;

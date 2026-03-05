@@ -10,6 +10,7 @@
 #include <string.h>
 #include <math.h>
 
+
 typedef enum {
   FIRST_FIT,
   BEST_FIT,
