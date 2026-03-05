@@ -6,4 +6,4 @@ set(CMAKE_C_STANDARD 99)
 add_subdirectory(libtdmm)
 
 add_executable(hw7 main.c)
-target_link_libraries(hw7 tdmm)
+target_link_libraries(hw7 tdmm m)
