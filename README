@@ -1,3 +1,27 @@
-gcc -g -Wall -Wextra main.c ./libtdmm/tdmm.c -o hw7 -I libtdmm
+Name: Priscilla Ye
+EID: pjy263
 
-gcc -g -Wall -Wextra test.c ./libtdmm/tdmm.c -o test -I libtdmm
+
+## Building and Running
+### Build
+```bash
+./build.sh
+```
+
+### Build for tests
+```bash
+./run_tests.sh
+```
+
+### Run tests to measure the required performance metrics
+```bash
+hw7
+cd data_analysis
+python3 ./analysis.py
+```
+
+
+### Run unit tests
+```bash
+test
+```
